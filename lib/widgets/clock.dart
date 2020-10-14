@@ -108,17 +108,14 @@ double transformInitialMinutes() {
 }
 
 double transformInitialHour() {
-  //TODO
-  //we need to add how much minutes
-  int hour = DateTime.now().hour;
+  DateTime time = DateTime.now();
   double value = 0.0;
-  double percent = hour / 24;
-  print("percent $percent");
-  value = percent + 0.75;
+  double percent = time.hour / 24;
+  double minutePercent = time.minute / 60;
+  value = percent + 0.75 + minutePercent / 100;
 
   if (value > 1) {
     value -= 1;
   }
-  print("value $value");
   return value;
 }
