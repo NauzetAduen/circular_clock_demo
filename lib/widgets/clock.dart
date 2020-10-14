@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class Clock extends StatefulWidget {
   final double angle;
@@ -20,7 +19,6 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    DateTime dateNow = DateTime.now();
     minuteController =
         AnimationController(vsync: this, duration: const Duration(minutes: 60));
     hourController =
@@ -34,10 +32,8 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
       curve: Curves.linear,
     );
 
-    double fromMinute = 0.75;
-    print(fromMinute);
-    double fromHour = 0.75;
-    print(fromHour);
+    double fromMinute = transformInitialMinutes();
+    double fromHour = transformInitialHour();
 
     minuteController
       ..forward(from: fromMinute)
@@ -96,4 +92,33 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
       ],
     );
   }
+}
+
+double transformInitialMinutes() {
+  int minutes = DateTime.now().minute;
+  double value = 0.0;
+
+  //percent is the percent of the circle starting from 0 (up)
+  double percent = minutes / 60;
+  value = percent + 0.75;
+  if (value > 1) {
+    value -= 1;
+  }
+  return value;
+}
+
+double transformInitialHour() {
+  //TODO
+  //we need to add how much minutes
+  int hour = DateTime.now().hour;
+  double value = 0.0;
+  double percent = hour / 24;
+  print("percent $percent");
+  value = percent + 0.75;
+
+  if (value > 1) {
+    value -= 1;
+  }
+  print("value $value");
+  return value;
 }
