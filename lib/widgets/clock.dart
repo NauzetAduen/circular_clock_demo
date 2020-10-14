@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Clock extends StatefulWidget {
-  final double angle;
-  final Color color;
-  final double width;
-
-  const Clock({this.angle, this.color, this.width});
+  const Clock();
 
   @override
   _ClockState createState() => _ClockState();
@@ -54,6 +50,7 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         RotationTransition(
           turns: minuteAnimation,
@@ -65,8 +62,8 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
                 width: 25,
               ),
               Container(
-                height: widget.width,
-                color: widget.color,
+                height: 2,
+                color: Colors.red,
                 width: 25,
               ),
             ],
@@ -82,13 +79,21 @@ class _ClockState extends State<Clock> with TickerProviderStateMixin {
                 width: 25,
               ),
               Container(
-                height: widget.width,
+                height: 3,
                 color: Colors.grey,
                 width: 25,
               ),
             ],
           ),
-        )
+        ),
+        Container(
+          width: 5,
+          height: 5,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.orangeAccent,
+          ),
+        ),
       ],
     );
   }
