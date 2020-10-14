@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:circular_clock_demo/widgets/clock_part.dart';
+import 'package:circular_clock_demo/widgets/clock.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,20 +28,37 @@ class CircularCLock extends StatefulWidget {
 
 class _CircularCLockState extends State<CircularCLock> {
   Timer timer;
+  double angle = 0;
 
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ClockPart(
-        angle: 0,
-        color: Colors.red,
-        width: 3,
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
+    DateTime time = DateTime.now();
+    angle = 5;
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+                "${time.hour.toString()} : ${time.minute.toString()} : ${time.second.toString()}"),
+            SizedBox(
+              height: 50,
+            ),
+            Clock(
+              angle: angle,
+              color: Colors.red,
+              width: 3,
+            ),
+          ],
+        ),
       ),
     );
   }
