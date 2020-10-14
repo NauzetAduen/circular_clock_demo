@@ -52,11 +52,7 @@ class _CircularCLockState extends State<CircularCLock> {
             SizedBox(
               height: 50,
             ),
-            Clock(
-              angle: angle,
-              color: Colors.red,
-              width: 3,
-            ),
+            Clock(),
           ],
         ),
       ),
