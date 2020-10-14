@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:circular_clock_demo/widgets/clock_part.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Circular Clock Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: CircularCLock(),
@@ -36,22 +37,11 @@ class _CircularCLockState extends State<CircularCLock> {
 
   @override
   Widget build(BuildContext context) {
-    return Center();
-  }
-}
-
-class Minutero extends StatelessWidget {
-  final double angle;
-  const Minutero(this.angle);
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: angle,
-      child: Container(
-        height: 2,
+    return Center(
+      child: ClockPart(
+        angle: 0,
         color: Colors.red,
-        width: 150,
+        width: 3,
       ),
     );
   }
